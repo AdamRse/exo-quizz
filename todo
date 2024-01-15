@@ -1,0 +1,10 @@
+- Conexion avec un pseudo sans mot de passe
+- Ajouter un pseudo créé un compte (si pas fait) et renvoie sur le quizz
+- L'utilisateur peut voir la liste des utilisateurs et leur meilleur score (tableau et graphique en barre)
+
+# Le quizz
+- les question sont aléatoires
+- Sélectionner une réponse est définitif
+- Après la sélection, on donne la réponse avec en vert la bonne réponse ou en rouge si la mauvaise.
+- Temps limité par question
+- ? (graphique de moyenne des résultats pour chaque réponse ?)
