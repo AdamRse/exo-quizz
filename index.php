@@ -12,19 +12,26 @@ require_once "./php/headers/init.php";
 <body>
     <?php
     require "./page/header.php";
+    $scripts[]="init.js";
 
     if(USER){
         if(!empty($_POST["s"])){
             $session = "./page/".strtolower($_POST["s"])."ctrl.php";
-            if(is_file($session))
+
+            if(is_file($session)){
                 require $session;
-            else
+            }
+            else{
                 require "./page/scores/ctrl.php";
+            }
             
         }
     }
-    else
+    else{
+        $scripts[]="formConexion.js";
         require "./page/formConexion.php";
+    }
+        
 
     require "./page/footer.php";
     ?>

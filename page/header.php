@@ -1,4 +1,4 @@
-<nav class="bg-orange-300 text-orange-800">
+<nav class="bg-orange-300 text-orange-800 mb-8">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -32,11 +32,15 @@
           <?php
             if(USER){
                 ?>
-                <a href="#./?s=quizz" class="text-orange-800 hover:bg-orange-800 hover:text-orange-300 rounded-md px-3 py-2 text-sm font-medium">Quizz</a>
+                <a href="./?s=quizz" class="text-orange-800 hover:bg-orange-800 hover:text-orange-300 rounded-md px-3 py-2 text-sm font-medium">
+                  Quizz
+                </a>
                 <?php
             }
             ?>
-            <a href="#./?s=scores" class="text-orange-800 hover:bg-orange-800 hover:text-orange-300 rounded-md px-3 py-2 text-sm font-medium">Scores</a>
+            <a href="./?s=scores" class="text-orange-800 hover:bg-orange-800 hover:text-orange-300 rounded-md px-3 py-2 text-sm font-medium">
+              Scores
+            </a>
           </div>
         </div>
       </div>
