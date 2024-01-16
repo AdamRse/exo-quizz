@@ -1,0 +1,1 @@
+<p>Page des scores</p>
