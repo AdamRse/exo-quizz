@@ -12,14 +12,19 @@ require_once "./php/headers/init.php";
 <body>
     <?php
     require "./page/header.php";
-    $scripts[]="init.js";
+    $scripts[]="./js/init.js";
 
     if(USER){
         if(!empty($_POST["s"])){
-            $session = "./page/".strtolower($_POST["s"])."ctrl.php";
+            $section = strtolower($_POST["s"]);
 
-            if(is_file($session)){
-                require $session;
+            $page = "./page/".$section."ctrl.php";
+            $js = "./js/".$section.".js";
+
+            if(file_exists($js)) $scripts[]=$js;
+
+            if(is_file($page)){
+                require $page;
             }
             else{
                 require "./page/scores/ctrl.php";
@@ -28,7 +33,7 @@ require_once "./php/headers/init.php";
         }
     }
     else{
-        $scripts[]="formConexion.js";
+        $scripts[]="./js/formConexion.js";
         require "./page/formConexion.php";
     }
         

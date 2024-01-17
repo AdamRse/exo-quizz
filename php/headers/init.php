@@ -12,6 +12,8 @@ else{
     }
 }
 
+require "./php/classes/Bdd.class.php";
+
 define("USER", (empty($_SESSION["user"]) ?false:$_SESSION['user']['pseudo']));
 
 //setcookie('AdamQuizz',$_SERVER['HTTP_USER_AGENT'].'!+'.$pseudoUser, time()+3600*10);
