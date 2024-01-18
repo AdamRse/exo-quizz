@@ -5,7 +5,8 @@ if(USER){
 }
 else{
     if(!empty($_POST["username"])){
-        $Bdd->getUserName($_POST["username"]);
+        require "actions/getCreateUser.php";
     }
-    require "actions/noUser.php";
+    else
+        require "actions/noUser.php";
 }

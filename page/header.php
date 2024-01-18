@@ -1,4 +1,4 @@
-<nav class="bg-orange-300 text-orange-800 mb-8">
+<nav class="bg-orange-300 text-orange-800 mb-8 select-none">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -49,9 +49,13 @@
         if(USER){
             ?>
             <!-- Profile dropdown -->
+            <div href="./?s=scores" class="text-orange-800 rounded-md px-3 py-2 text-sm font-medium">
+              <?= $_SESSION['user']['pseudo'] ?>
+            </div>
             <div class="relative ml-3">
+
             <div>
-                <button type="button" class="relative flex rounded-full bg-orange-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <button id="btMenu" type="button" class="relative flex rounded-full bg-orange-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                 <span class="absolute -inset-1.5"></span>
                 <span class="sr-only">Open user menu</span>
                 <img class="h-8 w-8 rounded-full" src="./img/avatars/Av5.png" alt="">
@@ -59,10 +63,10 @@
             </div>
 
             <!-- Menu caché, activer avec un event sur le bouton -->
-            <div class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+            <div id="divMenu" class="hidden absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             <!-- Active: "bg-gray-100", Not Active: "" -->
-                <a href="./?s=account" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">parametres</a>
-                <a href="./?dc" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Déconnecter</a>
+                <a href="./?s=account" class="block px-4 py-2 text-sm text-orange-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Compte</a>
+                <a href="./?dc" class="block px-4 py-2 text-sm text-orange-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Déconnecter</a>
             </div>
             </div>
             <?php

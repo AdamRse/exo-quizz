@@ -1,5 +1,7 @@
 <?php
+ob_start();
 require_once "./php/headers/init.php";
+require_once "./php/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,23 +16,23 @@ require_once "./php/headers/init.php";
     require "./page/header.php";
     $scripts[]="./js/init.js";
 
-    if(USER){
-        if(!empty($_POST["s"])){
-            $section = strtolower($_POST["s"]);
+    // echo "<pre>";
+    // var_dump($_GET, $_POST, $_REQUEST);
+    // echo "</pre>";
+    if(!empty($_REQUEST["s"])){
+        $section = strtolower($_REQUEST["s"]);
 
-            $page = "./page/".$section."ctrl.php";
-            $js = "./js/".$section.".js";
+        $page = "./page/".$section."/ctrl.php";
+        $js = "./js/".$section.".js";
 
-            if(file_exists($js)) $scripts[]=$js;
-
-            if(is_file($page)){
-                require $page;
-            }
-            else{
-                require "./page/scores/ctrl.php";
-            }
-            
+        if(file_exists($js)) $scripts[]=$js;
+        if(is_file($page)){
+            require $page;
         }
+        else{
+            require "./page/scores/ctrl.php";
+        }
+        
     }
     else{
         $scripts[]="./js/formConexion.js";
@@ -42,3 +44,5 @@ require_once "./php/headers/init.php";
     ?>
 </body>
 </html>
+<?php
+ob_end_flush();

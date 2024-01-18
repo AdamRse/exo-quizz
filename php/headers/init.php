@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_GET["dc"])){//Déconneion
+if(isset($_REQUEST["dc"])){//Déconneion
     unset($_SESSION["user"]);
     setcookie('AdamQuizz', '', -1);
 }

@@ -1,6 +1,8 @@
 <?php
 class Bdd extends PDO{
 
+    private $_error = array();
+
     private const sgbd = 'mysql';
     private const server = "127.0.0.1";
     private const db = "quizz";
@@ -22,13 +24,24 @@ class Bdd extends PDO{
         parent::__construct($connectionString, $user, $pw);
         $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
-
+public function prepare(string $sql, array $opt = []): PDOStatement|false {
+    return parent::prepare($sql, $opt);
+}
+public function returErrorDatabase(){
+    $error = $this->_error;
+    return (empty($this->_error[1]))?false:"Mysql renvoie une erreur : ".$error[2]."<br/>Mysql code : ".$error[1]."<br/>PDO code : ".$error[2];
+}
 private function noTags($string){
     return preg_replace("/<(^>)+>/", "", $string);
 }
+private function checkError(PDOStatement $pdoS){
+    if(!empty($pdoS->errorInfo()[0])){
+        $this->_error = $pdoS->errorInfo();
+    }
+}
 public function getUserName($name){
     $rq = $this->prepare("SELECT * FROM users WHERE pseudo = ?");
-    $rq->execute(array($name));
+    $rq->execute(array($name)); $this->checkError($rq);
     return $rq->fetch(PDO::FETCH_ASSOC);
 }
 public function addUser($name){
@@ -36,8 +49,13 @@ public function addUser($name){
     if(!empty($name)){
         $name = $this->noTags($name);
         $q = $this->prepare("INSERT INTO users (pseudo, avatar) VALUES (:pseudo, :avatar)");
-        $rt = $q->execute(["pseudo" => $name, "avatar" => "Av".rand(1, 9).".png"]);
+        $rt = $q->execute(["pseudo" => $name, "avatar" => "Av".rand(1, 9).".png"]); $this->checkError($q);
     }
+    return $rt;
+}
+public function createGetUser($name){
+    $rt = false;
+    if($this->addUser($name)) $rt = $this->getUserName($this->lastInsertId());
     return $rt;
 }
 }
