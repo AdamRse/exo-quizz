@@ -1,7 +1,6 @@
 <?php
-ob_start();
 require_once "./php/headers/init.php";
-require_once "./php/functions.php";
+ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -58,5 +58,25 @@ public function createGetUser($name){
     if($this->addUser($name)) $rt = $this->getUserName($this->lastInsertId());
     return $rt;
 }
+public function getQuestionsReponses($nb = 10){
+    $return = false;
+    $q = $this->prepare("SELECT * FROM questions ORDER BY RAND() LIMIT $nb;");
+    if($q->execute()){
+        $return = array();
+        while($question = $q->fetch(PDO::FETCH_ASSOC)){
+            $return[$question["id"]]=$question;
+            foreach($this->query("SELECT good_ans, difficulty, statement as answer FROM choices WHERE id_questions = ".$question['id']) as $row){
+                $return[$question['id']]['answers'][]=$row;
+            }
+
+
+        }
+    }
+    else
+        $this->checkError($q);
+    $q->fetchAll(PDO::FETCH_ASSOC);
+    return $return;
+}
+
 }
 $Bdd = new Bdd();
